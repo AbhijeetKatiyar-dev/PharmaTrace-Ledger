@@ -1,7 +1,3 @@
-/* common.js — standalone stand-in for the shared helpers manufacturer.js expects
-   (auth / data / ui). Demo data lives in localStorage. If you already have your
-   own auth.js / ledger.js / ui.js, load those instead of this file. */
-
 const LS_KEY = "pharmatrace.demo.v1";
 const DEMO_USER = { name: "Apex Pharma Ltd", role: "manufacturer" };
 
