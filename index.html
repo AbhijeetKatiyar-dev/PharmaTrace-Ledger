@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PharmaTrace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a class="logo" href="index.html">Pharma<span>Trace</span></a>
+    <label>Demo role
+      <select id="role">
+        <option value="manager">Supply Manager</option>
+        <option value="pharmacist">Pharmacist</option>
+      </select>
+    </label>
+  </header>
+
+  <main>
+    <section class="page-title">
+      <div>
+        <p class="eyebrow">Supply Manager</p>
+        <h1>Medicine batch tracker</h1>
+        <p>Register batches and keep a simple record of each handoff.</p>
+      </div>
+      <button id="addBatch">+ Register batch</button>
+    </section>
+
+    <p id="roleMessage" class="message" hidden></p>
+    <section id="summary" class="summary" aria-label="Batch summary"></section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Registered batches</h2>
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search ID or medicine">
+          <select id="filter">
+            <option value="all">All statuses</option>
+            <option>Registered</option>
+            <option>In Transit</option>
+            <option>Received</option>
+            <option>Expired</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Batch ID</th><th>Medicine</th><th>Expiry</th><th>Location</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="batchList"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <span>Prototype only. Data is saved in this browser.</span>
+      <button id="reset" class="link-button">Reset sample data</button>
+    </footer>
+  </main>
+
+  <datalist id="locations"></datalist>
+
+  <dialog id="batchDialog">
+    <form id="batchForm">
+      <div class="dialog-head">
+        <h2>Register batch</h2>
+        <button type="button" class="close" data-close="batchDialog">×</button>
+      </div>
+      <p id="batchError" class="error"></p>
+      <div class="form-grid">
+        <label>Batch ID <input name="batchId" placeholder="PT-2026-0005" required></label>
+        <label>Medicine name <input name="medicineName" required></label>
+        <label>Manufacturer <input name="manufacturer" required></label>
+        <label>Starting location <input name="initialLocation" list="locations" required></label>
+        <label>Manufacturing date <input name="manufactureDate" type="date" required></label>
+        <label>Expiry date <input name="expiryDate" type="date" required></label>
+      </div>
+      <div class="dialog-actions"><button type="button" class="secondary" data-close="batchDialog">Cancel</button><button>Save batch</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="moveDialog">
+    <form id="moveForm">
+      <div class="dialog-head">
+        <h2 id="moveTitle">Record handoff</h2>
+        <button type="button" class="close" data-close="moveDialog">×</button>
+      </div>
+      <p id="moveInfo" class="muted"></p>
+      <p id="moveError" class="error"></p>
+      <label>From <input id="fromLocation" readonly></label>
+      <label id="toField">Destination <input id="toLocation" list="locations"></label>
+      <label>Notes (optional) <textarea id="notes" rows="3" maxlength="200"></textarea></label>
+      <div class="dialog-actions"><button type="button" class="secondary" data-close="moveDialog">Cancel</button><button>Save</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="historyDialog">
+    <div class="dialog-head">
+      <h2 id="historyTitle">Batch history</h2>
+      <button type="button" class="close" data-close="historyDialog">×</button>
+    </div>
+    <div id="historyContent"></div>
+  </dialog>
+
+  <script src="manager.js"></script>
+</body>
+</html>
