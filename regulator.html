@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <title>Regulator Console · PharmaTrace</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <header id="nav"></header>
+  <main class="pt-wrap">
+    <div class="pt-head">
+      <div>
+        <p class="pt-eyebrow">Regulator</p>
+        <h1>Regulator console</h1>
+        <p>Decide on flagged batches, watch delayed shipments, and audit every action taken in the system.</p>
+      </div>
+    </div>
+
+    <section class="pt-stats" id="stats" aria-label="Summary"></section>
+
+    <section aria-labelledby="queueTitle">
+      <h2 class="pt-section-label" id="queueTitle">Review queue</h2>
+      <div class="pt-review" id="queue"></div>
+    </section>
+
+    <section class="pt-panel" aria-label="Records">
+      <ul class="nav nav-tabs px-3 pt-3" role="tablist">
+        <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabBatches" type="button" role="tab" id="tb1">All batches</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabShip" type="button" role="tab" id="tb2">Shipments</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabReports" type="button" role="tab" id="tb3">Reports</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabAudit" type="button" role="tab" id="tb4">Audit log</button></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="tabBatches" role="tabpanel" aria-labelledby="tb1">
+          <div class="pt-panel__head">
+            <div class="pt-toolbar w-100">
+              <label class="visually-hidden" for="search">Search batches</label>
+              <input class="form-control form-control-sm" id="search" type="search" placeholder="Search ID or drug">
+              <label class="visually-hidden" for="filter">Filter</label>
+              <select class="form-select form-select-sm" id="filter">
+                <option value="all">All statuses</option><option value="Genuine">Genuine</option><option value="Under Review">Under Review</option>
+                <option value="Recalled">Recalled</option><option value="Counterfeit">Counterfeit</option><option value="expiring">Expiring in 30 days</option>
+              </select>
+              <button class="btn btn-sm btn-outline-secondary" type="button" id="csvBtn">Export CSV</button>
+            </div>
+          </div>
+          <div class="table-responsive"><table class="table pt-table table-hover">
+            <thead><tr><th>Batch ID</th><th>Drug</th><th>Manufacturer</th><th>Holder</th><th>Status</th><th>Ledger</th><th></th></tr></thead>
+            <tbody id="batches"></tbody></table></div>
+        </div>
+        <div class="tab-pane fade" id="tabShip" role="tabpanel" aria-labelledby="tb2">
+          <div class="table-responsive"><table class="table pt-table">
+            <thead><tr><th>Shipment</th><th>Drug</th><th>Route</th><th>Expected</th><th>Status</th></tr></thead>
+            <tbody id="shipments"></tbody></table></div>
+        </div>
+        <div class="tab-pane fade" id="tabReports" role="tabpanel" aria-labelledby="tb3">
+          <div class="table-responsive"><table class="table pt-table">
+            <thead><tr><th>When</th><th>Batch</th><th>Raised by</th><th>Reason</th><th>Details</th></tr></thead>
+            <tbody id="reports"></tbody></table></div>
+        </div>
+        <div class="tab-pane fade" id="tabAudit" role="tabpanel" aria-labelledby="tb4">
+          <div class="table-responsive"><table class="table pt-table">
+            <thead><tr><th>When</th><th>Who</th><th>Role</th><th>Action</th><th>Batch</th></tr></thead>
+            <tbody id="audit"></tbody></table></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="js/ledger.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/actions.js"></script>
+  <script src="js/regulator.js"></script>
+</body>
+</html>
