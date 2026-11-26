@@ -50,7 +50,7 @@ Use **Reset demo data** on the login page to restore the sample records.
 
 ## How the ledger works
 
-Each custody event stores a SHA-256 fingerprint of itself plus the previous event's fingerprint (`js/ledger.js`). Events are appended to the batch history. Editing an old event causes its fingerprint check to fail.
+Each custody event stores a SHA-256 fingerprint of itself plus the previous event's fingerprint (`ledger.js`). Events are appended to the batch history. Editing an old event causes its fingerprint check to fail.
 
 ## Prototype checks and limitations
 
@@ -65,6 +65,8 @@ Each custody event stores a SHA-256 fingerprint of itself plus the previous even
 
 ## Main files
 
+All HTML, CSS and JavaScript files are currently in the repository root. Keep the asset paths below relative to the page files when deploying to GitHub Pages.
+
 ```
 index.html          Login page; account determines role
 manufacturer.html   Manufacturer dashboard
@@ -72,13 +74,13 @@ manager.html        Supply Manager dashboard
 verify.html         Pharmacist verification portal
 regulator.html      Regulator console
 check.html          Public patient check
-css/style.css       Shared theme and layout
-js/ledger.js        SHA-256 hash chain and verification rules
-js/data.js          Local Storage helpers and sample data
-js/ui.js            Shared UI components, alerts, timeline, CSV and QR
-js/auth.js          Demo login session, role guard, navigation and notifications
-js/actions.js       Registration, dispatch, recall, receipt, reporting and custody actions
-js/scanner.js       QR scanning (camera or photo)
+style.css           Shared theme and layout
+ledger.js        SHA-256 hash chain and verification rules
+data.js          Local Storage helpers and sample data
+ui.js            Shared UI components, alerts, timeline, CSV and QR
+auth.js          Demo login session, role guard, navigation and notifications
+actions.js       Registration, dispatch, recall, receipt, reporting and custody actions
+scanner.js       QR scanning (camera or photo)
 ```
 
 ## Libraries (CDN)
